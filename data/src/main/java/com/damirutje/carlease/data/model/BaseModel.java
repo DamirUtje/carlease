@@ -14,19 +14,8 @@ public class BaseModel {
     @Column(name = "ID")
     protected long id;
 
-    @Column(nullable = false, name = "ACTIVE")
-    private boolean active;
-
     public long getId() {
         return id;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
 }

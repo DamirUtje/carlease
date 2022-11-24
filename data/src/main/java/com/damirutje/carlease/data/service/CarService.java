@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.damirutje.carlease.data.model.Car;
 
-public interface CarService extends BaseService<Car> {
+public interface CarService {
 
     /**
      * Persists a new {@link Car} entity to database.

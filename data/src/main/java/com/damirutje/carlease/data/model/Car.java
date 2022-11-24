@@ -1,7 +1,5 @@
 package com.damirutje.carlease.data.model;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -26,12 +24,16 @@ public class Car extends BaseModel {
     private int emissionCO2;
 
     @Column(nullable = false, name = "GROSS_PRICE")
-    private BigDecimal grossPrice;
+    private double grossPrice;
 
     @Column(nullable = false, name = "NETT_PRICE")
-    private BigDecimal nettPrice;
+    private double nettPrice;
 
-    public Car(String make, String model, int numberOfDoors, BigDecimal grossPrice, BigDecimal nettPrice) {
+    public Car() {
+        super();
+    }
+
+    public Car(String make, String model, int numberOfDoors, double grossPrice, double nettPrice) {
         this.make = make;
         this.model = model;
         this.numberOfDoors = numberOfDoors;
@@ -79,19 +81,19 @@ public class Car extends BaseModel {
         this.emissionCO2 = emissionCO2;
     }
 
-    public BigDecimal getGrossPrice() {
+    public double getGrossPrice() {
         return grossPrice;
     }
 
-    public void setGrossPrice(BigDecimal grossPrice) {
+    public void setGrossPrice(double grossPrice) {
         this.grossPrice = grossPrice;
     }
 
-    public BigDecimal getNettPrice() {
+    public double getNettPrice() {
         return nettPrice;
     }
 
-    public void setNettPrice(BigDecimal nettPrice) {
+    public void setNettPrice(double nettPrice) {
         this.nettPrice = nettPrice;
     }
 

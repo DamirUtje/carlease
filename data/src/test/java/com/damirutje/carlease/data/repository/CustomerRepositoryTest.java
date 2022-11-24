@@ -47,7 +47,6 @@ public class CustomerRepositoryTest {
         assertThat(customerQuery)
                 .withFailMessage("Customer query should be equal to initial instance")
                 .isEqualTo(Optional.of(customer));
-
     }
     
 }

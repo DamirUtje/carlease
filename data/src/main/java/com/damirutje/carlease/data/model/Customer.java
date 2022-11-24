@@ -29,6 +29,10 @@ public class Customer extends BaseModel {
     @Column(nullable = false, name = "PHONE_NUMBER")
     private String phoneNumber;
 
+    public Customer() {
+        super();
+    }
+
     public Customer(String name, String street, String houseNumber, String zipCode, String place, String emailAddress,
             String phoneNumber) {
         this.name = name;

@@ -43,7 +43,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> getCustomers() {
         return StreamSupport.stream(customerRepository.findAll().spliterator(), false)
-                .filter(item -> item.isActive())
                 .collect(Collectors.toList());
     }
 
@@ -56,12 +55,6 @@ public class CustomerServiceImpl implements CustomerService {
     public void deleteCustomer(long id) {
         Customer customer = getCustomer(id);
         customerRepository.delete(customer);
-    }
-
-    @Override
-    public void setInactive(Customer customer) {
-        customer.setActive(false);
-        customerRepository.save(customer);
     }
 
 }

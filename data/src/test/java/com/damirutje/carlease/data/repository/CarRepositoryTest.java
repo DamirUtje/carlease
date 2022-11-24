@@ -1,6 +1,5 @@
 package com.damirutje.carlease.data.repository;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,8 +32,7 @@ public class CarRepositoryTest {
 
     @Test
     public void testShouldSaveAndQueryCar() {
-        Car car = new Car("VW", "Up", 3, new BigDecimal("29790.00"),
-                new BigDecimal("25000.00"));
+        Car car = new Car("VW", "Up", 3, 29790.00, 25000.00);
 
         carRepository.save(car);
 

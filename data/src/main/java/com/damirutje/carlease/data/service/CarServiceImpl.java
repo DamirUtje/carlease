@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.damirutje.carlease.data.exception.CarNotExistException;
+import com.damirutje.carlease.data.exception.InvalidCarPricingException;
 import com.damirutje.carlease.data.model.Car;
 import com.damirutje.carlease.data.repository.CarRepository;
 
@@ -24,6 +25,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car createCar(Car car) {
+        validatePricing(car);
         return carRepository.save(car);
     }
 
@@ -43,7 +45,6 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> getCars() {
         List<Car> cars = StreamSupport.stream(carRepository.findAll().spliterator(), false)
-                .filter(item -> item.isActive())
                 .collect(Collectors.toList());
 
         return cars;
@@ -51,6 +52,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void updateCar(Car car) {
+        validatePricing(car);
         carRepository.save(car);
     }
 
@@ -60,10 +62,16 @@ public class CarServiceImpl implements CarService {
         carRepository.delete(car);
     }
 
-    @Override
-    public void setInactive(Car car) {
-        car.setActive(false);
-        updateCar(car);
+    private void validatePricing(Car car) {
+        int minPrice = 0;
+        int maxPrice = 10000000; // 10 million
+        double nett = car.getNettPrice();
+        double gross = car.getGrossPrice();
+        if (nett < minPrice || gross < minPrice ||
+                nett >= maxPrice || gross >= maxPrice ||
+                nett > gross) {
+            throw new InvalidCarPricingException();
+        }
     }
 
 }
